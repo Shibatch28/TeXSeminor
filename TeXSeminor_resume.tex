@@ -1,0 +1,84 @@
+\documentclass[12pt, a4paper, fleqn, titlepage]{ltjsarticle}
+
+\setlength{\mathindent}{2\zw}
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{39\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\voffset}{0in}
+\setlength{\parindent}{0ex} % 8スペース分のインデント
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{ascmac}
+\usepackage{multicol}
+\usepackage{physics, amssymb}
+\usepackage[top=35truemm,bottom=30truemm,left=30truemm,right=30truemm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{here}
+\usepackage{listings,jvlisting}
+\usepackage{hyperref}
+
+% フォント設定
+
+% \usepackage{luatexja-fontspec}
+% \setmainfont[Ligatures=TeX]{BIZ UDP Mincho}
+% \setmainjfont[BoldFont=MS Gothic]{BIZ UD Mincho}
+% \setsansfont{BIZ UDP Gothic}
+% \setsansjfont{BIZ UD Gothic}
+
+%ここからソースコードの表示に関する設定
+\lstset{
+  language={TeX},
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\small},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0\zw,
+  xleftmargin=0\zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1\zw,
+  lineskip=-0.5ex
+}
+\renewcommand{\lstlistingname}{Source Code}
+%ここまでソースコードの表示に関する設定
+
+% \pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\allowdisplaybreaks % 数式モードのページ跨ぎ
+
+\titleformat{\section}[display]
+  {\normalsize\LARGE\bfseries}{第\thesection 章}{0pt}{\HUGE}[\vspace*{-1\zh}\hrulefill]
+\titlespacing*{\section}{0pt}{0.5ex}{1ex}
+
+\title{
+  {\large 静岡大学附属図書館浜松分館 利用学生モニター主催}\vskip \baselineskip
+  {\Huge 卒業論文作成者のための\TeX 講習会}\vskip .5\baselineskip
+  {\Large 配布資料}
+}
+\date{作成日: \today}
+\author{
+  司会者: 大芝 峻平
+}
+
+\begin{document}
+\maketitle
+% 目次の出力
+% \tableofcontents
+% \clearpage
+\include{TSR1.tex}
+% \include{TSR2.tex}
+% \include{TSR3.tex}
+% \include{TSR4.tex}
+% \include{TSR5.tex}
+% \include{TSR6.tex}
+% \bibliography{resume}
+% \bibliographystyle{junsrt}
+\end{document}
