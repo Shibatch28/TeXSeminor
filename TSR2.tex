@@ -36,6 +36,38 @@ installにチェックを入れたまま「Next >」をクリックする. 次�
   \end{minipage}
 \end{figure}
 
+\subsubsection{Linux (Ubuntu)の場合}
+Linuxでは，流れとしてはWindowsでのインストール方法と大差は無いが，基本的に
+コンソール上ですべての工程を行う．
+まず，ミラーサイトから\texttt{instal-tl-unx.tar.gz}をダウンロードする必要があるので，
+wgetまたはcurlコマンドを使用する．\\
+wgetコマンドの場合は，\\
+\texttt{wget http://mirror.ctan.org/systems/texlive/tlnet/install\\-tl-unx.tar.gz}\\
+curlコマンドの場合は．\\
+\texttt{curl -OL http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz}\\
+このコマンドを実行したら，次はダウンロードしたインストーラのファイルを展開する．\\
+\texttt{tar xvf install-unx.tar.gz}\\
+展開したインストーラのディレクトリに移動する．\\
+\texttt{cd install-tl-2*}\\
+root権限でインストーラを実行する．\\
+\texttt{sudo /install-tl -no-gui -repository \\
+http://mirror.ctan.org/systems/texlive/tlnet/}\\
+この時，以下のような表示が出るので，Iを入力してインストールを開始する．
+\texttt{
+  Actions: \\
+  <I> start  installation to hard disk\\
+  <H> help\\
+  <Q> quit\\
+\\
+  Enter command: 
+}\\
+インストールが終了したら/usr/local/binディレクトリは以下にシンボリックリンクを追加する．\\
+\texttt{sudo /usr/local/texlive/????/bin/*/tlmgr path add}\\
+途中の?や*はワイルドカード検索のため，自動的にうまく実行されるはずだが，そうでない場合は以下の
+ように具体的なディレクトリ名を指定する．
+\texttt{sudo /usr/local/texlive/2024/bin/x86\_64-linux/tlmgr path add}\\
+もし以上の解説でうまくいかない場合は，TeXWikiのインストールガイド(\url{https://texwiki.texjp.org/?Linux})を参照してほしい．
+
 \subsection{VS CodeにTeXの拡張機能を追加する}
 TeX Liveのインストールが終われば, 次はVS Codeから\TeX をコンパイルできるようにする
 必要がある. まず, \TeX の拡張機能をインストールしよう. VS Codeの「拡張機能」にて, 
