@@ -22,14 +22,38 @@
   \textbackslash subsection\{実験目的\}\\
   $\vdots$
 \end{itembox}
-\newpage
-\subsection{章立ての例}
-各学部，学科によって細かいレポートの書式があるため，ここですべてを網羅することはできない．よっていくつかの例を以下に示す．\vskip .5\baselineskip
-【電気系のレポートの場合】\cite{IEE}\\
-一般社団法人 電気学会．"原稿の書き方｜一般社団法人 電気学会"．原稿の書き方．\url{http://www.iee.jp/tech_mtg/howto/}，2023/10/08\vskip .5\baselineskip
-【情報系のレポートの場合】\cite{IPSJ}\\
-一般社団法人 情報処理学会．"LaTeXスタイルファイル、MS-Wordテンプレートファイル 情報処理学会"．LaTeXスタイルファイル、MS-Wordテンプレートファイル．\url{https://www.ipsj.or.jp/journal/submit/style.html}，2023/10/08\vskip .5\baselineskip
-【機械系のレポートの場合】\cite{JSME}\\
-一般社団法人 日本機械学会．"Japanese-Template-mihon.pdf"．日本機械学会論文集．\url{https://www.jsme.or.jp/publish/transact/Japanese-Template-mihon.pdf}，2023/10/08\vskip \baselineskip
-
-これらは学会への論文投稿の為のテンプレートであるが，報告書(レポート)として作成する際も基本的に同様の形式で良い．
+学部4年生以上は，所属する研究室や論文を提出する学会のルールに従うこと．
+\subsection{文字の装飾}
+論文やレポートなどを執筆したいとき，\textbf{太字}や\textit{Italic}，\color{red}色付き文字\color{black}などを使って強調したいことがあるだろう．そこで\LaTeX で使える文字のスタイライズコマンドを以下に示す．
+\subsubsection{太字}
+太字を挿入したいときは，\texttt{textbf}コマンドを使用する．具体的には，次のように使う．
+\begin{itembox}[c]{太字の例}
+  \ttfamily
+  \textbackslash textbf\{太字にしたい文\}
+\end{itembox}
+\subsubsection{Italic(斜体)}
+斜体に関しては，日本語フォントに斜体が組み込まれていないため，基本的には日本語の斜体はサポートされていない．正確には全くできないというわけではないが，複雑かつ体裁が崩れやすいため，本誌では紹介しない．
+英語に関してはシンプルな手法でできるため，以下に斜体にするためのコマンドを示す．
+\begin{itembox}[c]{斜体の例}
+  \ttfamily
+  \textbackslash textit\{斜体にしたい英文\}
+\end{itembox}
+\subsubsection{等幅}
+ソースコードを一部示すときなど，一時的に等幅フォントを使用したい場合は\texttt{texttt}コマンドを使用する．具体的には，次のように使う．
+\begin{itembox}[c]{等幅の例}
+  \ttfamily
+  \textbackslash texttt\{等幅にしたい文\}
+\end{itembox}
+\subsubsection{色付き文字}
+テキストの一部に色をつけたい場合は，\texttt{color}コマンドを使用する．なお，使用できる色については読み込むパッケージに依存しており，xcolorパッケージではさまざまな色が使える．逆にパッケージを読み込まなければ多彩な色付き文字を使うことはできないので，冒頭でxcolorパッケージを読み込まなければならない．
+具体的には，次のように使う．
+\begin{itembox}[c]{色付き文字の例}
+  \ttfamily
+  \textbackslash usepackage[dvipsnames]\{xcolor\}
+  \% xcolorパッケージをdvipsnamesで読み込み(これで多彩な色を使える)
+  \\
+  中略
+  \\
+  \textbackslash color\{色\}色付きにしたい文\textbackslash color\{black\}
+\end{itembox}
+xcolorパッケージで使用できる色については，OverLeafのドキュメントを参考にすると良い．(\url{https://ja.overleaf.com/learn/latex/Using_colors_in_LaTeX})
