@@ -1,30 +1,79 @@
-\documentclass[12pt, a4paper, fleqn, titlepage]{ltjsarticle}
+% 書き出したPDFファイルに埋め込む情報を記述するためのファイル
+\begin{filecontents*}{\jobname.xmpdata}
+  \Title{論文・レポート執筆のためのLaTeX入門会 〜環境構築からBibTeXまで〜}
+  \Author{大芝 峻平}
+  \Language{ja-JP}
+  \Publisher{静岡大学附属図書館浜松分館利用学生モニター}
+\end{filecontents*}
 
-\setlength{\mathindent}{2\zw}
-\setlength{\textwidth}{\fullwidth}
-\setlength{\textheight}{39\baselineskip}
-\addtolength{\textheight}{\topskip}
-\setlength{\voffset}{0in}
-\usepackage{color}
+
+% プリアンブル
+\documentclass[12pt, a4paper, titlepage]{ltjsarticle}
+\usepackage[x-1a]{pdfx}
 \usepackage[dvipsnames]{xcolor}
-\usepackage{graphicx}
+\usepackage[luatex]{graphicx}
 \usepackage{ascmac}
+\usepackage{CJKutf8}
+\usepackage{luatex85}
 \usepackage{multicol}
-\usepackage{physics, amssymb}
-\usepackage[top=20truemm,bottom=20truemm,left=30truemm,right=30truemm]{geometry}
+\usepackage{physics, amssymb, amsmath}  % 数式用
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{here}
-\usepackage{listings,jvlisting}
-\usepackage{hyperref}
+\usepackage{listings, jvlisting}
+\usepackage{tikz, tikz-3dplot, braket}
+\usepackage{titling}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{luatexja-fontspec}
+\usepackage[deluxe]{luatexja-preset}
 
-% フォント設定
+% TikZの設定 ---
+\usepackage{tikz, tikz-3dplot, braket}
+\usetikzlibrary{patterns, intersections, calc, quotes, angles, arrows.meta, through, shapes.geometric}
+\usetikzlibrary{shapes, positioning}
+% ---
 
-% \usepackage{luatexja-fontspec}
-% \setmainfont[Ligatures=TeX]{BIZ UDP Mincho}
-% \setmainjfont[BoldFont=MS Gothic]{BIZ UD Mincho}
-% \setsansfont{BIZ UDP Gothic}
-% \setsansjfont{BIZ UD Gothic}
+% 余白の設定 ---
+\setlength{\textheight}{\paperheight}
+\setlength{\topmargin}{4.6truemm}  % 上の余白を30mm (=1inch[25.4mm] - 4.6mm)に
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\textheight}{-60truemm} % 下の余白も30mmに (TOP+20mm)
+
+\setlength{\textwidth}{\paperwidth}
+\setlength{\oddsidemargin}{4.6truemm}  % 左の余白を30mm (=1inch[25.4mm] + 4.6mm)に
+\setlength{\evensidemargin}{\oddsidemargin}
+\addtolength{\textwidth}{-61truemm} % 右の余白も30mmに
+% ---
+
+% ページスタイルの設定 ---
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\lfoot{}
+\cfoot{--\;\thepage\;--}
+\rfoot{}
+\allowdisplaybreaks % 数式モードのページ跨ぎを許可
+% ---
+
+% フォントの設定 ---
+\setmainfont[Ligatures={Rare,TeX}]{Times New Roman}
+\setsansfont{Arial}
+\setmainjfont[
+  % Path = /System/Library/Fonts/,
+  Extension = .otf,
+  UprightFont = *-L,
+  BoldFont = *-B
+]{FOT-UDMinchoPro}
+\setsansjfont[
+  % Path = /System/Library/Fonts/,
+  Extension = .otf,
+  UprightFont = *-M,
+  BoldFont = *-B
+]{FOT-UDKakugo_SmallPr6}
+% ---
 
 %ここからソースコードの表示に関する設定
 \lstset{
@@ -49,29 +98,23 @@
 \renewcommand{\lstlistingname}{Source Code}
 %ここまでソースコードの表示に関する設定
 
-% \pagestyle{fancy}
-\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\setlength{\headheight}{20pt}
 \allowdisplaybreaks % 数式モードのページ跨ぎ
 
 \titleformat{\section}[display]
   {\normalsize\LARGE\bfseries}{第\thesection 章}{0pt}{\HUGE}[\vspace*{-1\zh}\hrulefill]
 \titlespacing*{\section}{0pt}{0.5ex}{1ex}
 
-\title{
-  {\large 静岡大学附属図書館浜松分館 利用学生モニター主催}\vskip \baselineskip
-  {\Huge \TeX 講習会}\vskip .5\baselineskip
-  {\Large 配布資料}
-}
-\date{作成日: \today}
-\author{
-  司会者: 大芝 峻平
-}
+\title{論文・レポート執筆のための\LaTeX 入門会\\〜環境構築からBibTeXまで〜}
+\date{\today}
+\author{大芝 峻平}
 
 \begin{document}
 \maketitle
 % 目次の出力
-% \tableofcontents
-% \clearpage
+\tableofcontents
+\clearpage
 \include{TSR1.tex}
 \include{TSR2.tex}
 \include{TSR3.tex}
