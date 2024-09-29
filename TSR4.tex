@@ -7,3 +7,97 @@
   \item[図]: figure環境
   \item[表]: table環境
 \end{description}
+他にも様々な環境が存在するが，本誌では代表的な環境を紹介する．
+また，環境を使用するときは基本的に\texttt{begin}コマンドではじめ，\texttt{end}コマンドで終了する．例えば，itemize環境を用いるときは以下のようになる．
+\begin{itembox}[c]{環境の使い方}
+  \texttt{
+    \hspace{-0.5\zw}\textbackslash begin\{itemize\}\\
+    \hspace{2\zw}\textbackslash item アイテムA\\
+    \hspace{2\zw}\textbackslash item アイテムB\\
+    \textbackslash end\{itemize\}
+  }
+\end{itembox}
+\subsection{箇条書き}
+通常の箇条書きにはitemizeを用いる．また，箇条書きする内容の先頭には\texttt{\textbackslash item}とつける必要がある．他にも箇条書きで用語を説明するdescriptionや，数字がつくenumerateも存在する．それぞれの例を以下に示していく．
+\newpage
+\subsubsection{itemizeの場合}
+\begin{itembox}[c]{itemize環境を使う時のソースコード}
+  \texttt{
+    \hspace{-0.5\zw}\textbackslash begin\{itemize\}\\
+    \hspace{2\zw}\textbackslash item アイテムA\\
+    \hspace{2\zw}\textbackslash item アイテムB\\
+    \textbackslash end\{itemize\}
+  }
+\end{itembox}
+\begin{itemize}
+  \item アイテムA
+  \item アイテムB
+\end{itemize}
+\subsubsection{descriptionの場合}
+\begin{itembox}[c]{description環境を使う時のソースコード}
+  \texttt{
+    \hspace{-0.5\zw}\textbackslash begin\{description\}\\
+    \hspace{2\zw}\textbackslash item[説明A] アイテムA\\
+    \hspace{2\zw}\textbackslash item[説明B] アイテムB\\
+    \textbackslash end\{description\}
+  }
+\end{itembox}
+\begin{description}
+  \item[説明A] アイテムA
+  \item[説明B] アイテムB
+\end{description}
+\subsubsection{enumerateの場合}
+\begin{itembox}[c]{enumerate環境を使う時のソースコード}
+  \texttt{
+    \hspace{-0.5\zw}\textbackslash begin\{enumerate\}\\
+    \hspace{2\zw}\textbackslash item アイテムA\\
+    \hspace{2\zw}\textbackslash item アイテムB\\
+    \textbackslash end\{enumerate\}
+  }
+\end{itembox}
+\begin{enumerate}
+  \item アイテムA
+  \item アイテムB
+\end{enumerate}
+\subsection{数式}
+一行で完結する数式，または複数行の数式に一つの式番号を振りたい場合は\texttt{equation}を，複数行の数式にそれぞれ連続した式番号を振りたい場合は\texttt{align}を用いる．なお，式番号を振りたくない場合は「*(アスタリスク)」をequationやalignの直後につける．
+\subsubsection{equation}
+\begin{itembox}[c]{equation}
+  \texttt{
+    \hspace{-0.5\zw}\textbackslash begin\{equation\}\\
+    \hspace{2\zw}e\textasciicircum\{i\textbackslash pi\}=-1\\
+    \textbackslash end\{equation\}\\
+    \textbackslash begin\{equation\}\\
+    \hspace{2\zw}\textbackslash begin\{split\}\\
+    \hspace{4\zw}\textbackslash cos\textasciicircum2\textbackslash theta \& = \textbackslash cos\textasciicircum2\textbackslash theta -\textbackslash sin\textasciicircum2\textbackslash theta \textbackslash \textbackslash\\
+    \hspace{4\zw}\& = 2\textbackslash cos\textasciicircum2\textbackslash theta - 1          \textbackslash \textbackslash\\
+    \hspace{4\zw}\& = 1 - 2\textbackslash sin\textasciicircum2\textbackslash theta\\
+    \hspace{2\zw}\textbackslash end\{split\}\\
+    \textbackslash end\{equation\}\\
+  }
+\end{itembox}
+\begin{equation}
+  e^{i\pi}=-1
+\end{equation}
+\begin{equation}
+  \begin{split}
+    \cos 2\theta & = \cos^2\theta -\sin^2\theta \\
+                 & = 2\cos^2\theta - 1          \\
+                 & = 1 - 2\sin^2\theta
+  \end{split}
+\end{equation}
+\subsubsection{align}
+\begin{itembox}[c]{align}
+  \texttt{
+    \hspace{-0.5\zw}\textbackslash begin\{align\}\\
+    \hspace{4\zw}\textbackslash cos\textasciicircum2\textbackslash theta \& = \textbackslash cos\textasciicircum2\textbackslash theta -\textbackslash sin\textasciicircum2\textbackslash theta \textbackslash \textbackslash\\
+    \hspace{4\zw}\& = 2\textbackslash cos\textasciicircum2\textbackslash theta - 1          \textbackslash \textbackslash\\
+    \hspace{4\zw}\& = 1 - 2\textbackslash sin\textasciicircum2\textbackslash theta\\
+    \textbackslash end\{align\}\\
+  }
+\end{itembox}
+\begin{align}
+  \cos 2\theta & = \cos^2\theta -\sin^2\theta \\
+               & = 2\cos^2\theta - 1          \\
+               & = 1 - 2\sin^2\theta
+\end{align}
