@@ -73,7 +73,7 @@
     \hspace{4\zw}\& = 2\textbackslash cos\textasciicircum2\textbackslash theta - 1          \textbackslash \textbackslash\\
     \hspace{4\zw}\& = 1 - 2\textbackslash sin\textasciicircum2\textbackslash theta\\
     \hspace{2\zw}\textbackslash end\{split\}\\
-    \textbackslash end\{equation\}\\
+    \textbackslash end\{equation\}
   }
 \end{itembox}
 \begin{equation}
@@ -93,7 +93,7 @@
     \hspace{4\zw}\textbackslash cos\textasciicircum2\textbackslash theta \& = \textbackslash cos\textasciicircum2\textbackslash theta -\textbackslash sin\textasciicircum2\textbackslash theta \textbackslash \textbackslash\\
     \hspace{4\zw}\& = 2\textbackslash cos\textasciicircum2\textbackslash theta - 1          \textbackslash \textbackslash\\
     \hspace{4\zw}\& = 1 - 2\textbackslash sin\textasciicircum2\textbackslash theta\\
-    \textbackslash end\{align\}\\
+    \textbackslash end\{align\}
   }
 \end{itembox}
 \begin{align}
@@ -101,3 +101,62 @@
                & = 2\cos^2\theta - 1          \\
                & = 1 - 2\sin^2\theta
 \end{align}
+
+\subsection{図}
+図を挿入する際にはfigure環境を用いる．figure環境を用いることで，図にキャプションをつけることができる．また，図の位置を指定することもできる．
+\begin{itembox}[c]{figure環境を使う時のソースコード}
+  \texttt{
+  \hspace{-0.5\zw}\textbackslash begin\{figure\}[htbp]\\
+  \hspace{4\zw}\textbackslash centering\\
+  \hspace{4\zw}\textbackslash includegraphics[width=12cm]\{sample.jpg\}\\
+  \hspace{4\zw}\textbackslash caption\{画像サンプル\}\\
+  \textbackslash end\{figure\}
+  }
+\end{itembox}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=12cm]{src/sample.jpg}
+  \caption{画像サンプル}
+\end{figure}
+\subsection{表}
+表を挿入する際にはtable環境を用いる．table環境を用いることで，表にキャプションをつけることができる．また，表の位置を指定することもできる．
+\begin{itembox}[c]{table環境を使う時のソースコード}
+  \texttt{
+  \hspace{-0.5\zw}\textbackslash begin\{table\}[htbp]\\
+  \hspace{4\zw}\textbackslash centering\\
+  \hspace{4\zw}\textbackslash caption\{表サンプル\}\\
+  \hspace{4\zw}\textbackslash begin\{tabular\}\{c|c\}\\
+  \hspace{6\zw}\textbackslash hline タイトルA \& タイトルB \textbackslash\textbackslash\\
+  \hspace{6\zw}\textbackslash hline 内容C \& 内容D \textbackslash\textbackslash\\
+  \hspace{6\zw}\textbackslash hline 内容E \& 内容F \textbackslash\textbackslash\\
+  \hspace{6\zw}\textbackslash hline\\
+  \hspace{4\zw}\textbackslash end\{tabular\}\\
+  \textbackslash end\{table\}
+  }
+\end{itembox}
+\begin{table}[htbp]
+  \centering
+  \caption{表サンプル}
+  \begin{tabular}{c|c}
+    \hline
+    タイトルA & タイトルB \\
+    \hline
+    内容C   & 内容D   \\
+    \hline
+    内容E   & 内容F   \\
+    \hline
+  \end{tabular}
+\end{table}
+\subsection{htbpとは}
+図や表の位置を指定する際に，htbpというオプションを指定することがある．htbpはそれぞれ以下のような意味を持つ．
+\begin{description}
+  \item[h]: その場所に挿入
+  \item[t]: ページの上部に挿入
+  \item[b]: ページの下部に挿入
+  \item[p]: 1ページにまとめて挿入
+\end{description}
+何も指定しない場合は，\LaTeX が自動で最適な位置に挿入する．しかし，ページ数が一番
+少なくなるような位置に挿入するため，図や表が思った位置に挿入されないことが多い．
+また，htbp指定でも必ずしも思った位置に挿入されるわけではない．どうしても図や表を
+特定の位置に挿入したい場合は，hereパッケージを使って\texttt{[H]}オプションを
+指定することで，その場所に図表を挿入できる．
