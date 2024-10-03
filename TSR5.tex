@@ -7,5 +7,52 @@ BibTeXを用いるためには，以下の手順を踏む必要がある．
   \item \LaTeX ファイル内でBibTeXを読み込む
   \item 参考文献リストを挿入する
 \end{enumerate}
-\subsubsection{参考文献情報の記述}
+\subsection{参考文献情報の記述}
 参考文献情報を記述したファイル(.bib)は，以下のような形式で記述する．
+\subsubsection{書籍の場合}
+\begin{lstlisting}
+@book{book1,
+  author = "著者名",
+  title = "書籍名",
+  publisher = "出版社",
+  year = "出版年",
+}
+\end{lstlisting}
+\subsubsection{論文の場合}
+\begin{lstlisting}
+@article{article1,
+  author = "著者名",
+  title = "論文名",
+  journal = "雑誌名",
+  volume = "巻数",
+  number = "号数",
+  pages = "ページ数",
+  year = "発行年",
+}
+\end{lstlisting}
+
+\subsubsection{ウェブサイトの場合}
+\begin{lstlisting}
+@misc{misc1,
+  author = "著者名",
+  title = "ページタイトル",
+  howpublished = "URL",
+  year = "アクセス年月日",
+}
+\end{lstlisting}
+なお，書籍や論文の場合は，必要に応じてvolume, number, pagesを記述する．
+\subsection{BibTeXファイルの読み込み}
+BibTeXファイルを読み込むためには，以下のコマンドを\LaTeX ファイル内に記述する．
+\begin{lstlisting}
+\bibliography{参考文献ファイル名}
+\end{lstlisting}
+
+\subsection{参考文献リストの挿入}
+参考文献リストを挿入するためには，以下のコマンドを\LaTeX ファイル内に記述する．
+\begin{lstlisting}
+\bibliographystyle{スタイル名}
+\bibliography{参考文献ファイル名}
+\end{lstlisting}
+スタイル名には，jplain, junsrtなどがある．
+jplainは参考文献リストをアルファベット順に並べるスタイルである．
+一方，junsrtは参考文献リストを引用順に並べるスタイルである．

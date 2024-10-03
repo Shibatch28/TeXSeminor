@@ -76,6 +76,27 @@
 % ---
 
 %ここからソースコードの表示に関する設定
+\lstdefinelanguage{customBib}{
+  morekeywords={@article,@book,@misc,@inproceedings,@techreport,@phdthesis,@mastersthesis}, % BibTeXのエントリタイプ
+  sensitive=false,        % 大文字・小文字の区別をしない
+  morecomment=[l][\color{gray}]{@}, % コメント（BibTeXのエントリ）をグレーに
+  morestring=[b]",        % ダブルクオートで囲まれた文字列
+}
+
+\lstset{
+  language=customBib,        % BibTeX用の言語設定を適用
+  basicstyle=\ttfamily,   % 等幅フォント
+  keywordstyle=\color{blue},    % キーワードの色
+  stringstyle=\color{red},      % 文字列の色
+  commentstyle=\color{gray},    % コメントの色
+  breaklines=true,        % 長い行を折り返す
+  numbers=left,           % 行番号を左に表示
+  numberstyle=\tiny\color{gray}, % 行番号のスタイル
+  stepnumber=1,           % 行番号の間隔
+  tabsize=2,              % タブのサイズ
+  showstringspaces=false, % 文字列中のスペースを表示しない
+}
+
 \lstset{
   language={TeX},
   basicstyle={\ttfamily},
