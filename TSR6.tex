@@ -1,1 +1,59 @@
 \section{体裁の調整}
+\subsection{ページレイアウト}
+余白を調整する方法には，いくつかの方法がある．
+ここでは，geometryパッケージを用いた方法とパッケージを用いない方法を紹介する．
+\subsubsection{geometryパッケージを用いた方法}
+geometryパッケージを用いると，簡単にページレイアウトを調整することができる．
+geometryパッケージを用いると，以下のように記述することで，ページレイアウトを調整することができる．
+\begin{lstlisting}
+\usepackage{geometry}
+\geometry{left=3cm,right=3cm,top=3cm,bottom=3cm}
+\end{lstlisting}
+この場合，左右上下の余白をそれぞれ3cmに設定している．
+また，このように指定する方法もある．
+\begin{lstlisting}
+\usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+\end{lstlisting}
+\subsubsection{パッケージを用いない方法}
+パッケージを用いない方法でページレイアウトを調整する場合は，以下のように記述する．
+\begin{lstlisting}
+% 余白の設定 ---
+\setlength{\textheight}{\paperheight}
+\setlength{\topmargin}{4.6truemm}  % 上の余白を30mm (=1inch[25.4mm] - 4.6mm)に
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\textheight}{-60truemm} % 下の余白も30mmに (TOP+20mm)
+
+\setlength{\textwidth}{\paperwidth}
+\setlength{\oddsidemargin}{4.6truemm}  % 左の余白を30mm (=1inch[25.4mm] + 4.6mm)に
+\setlength{\evensidemargin}{\oddsidemargin}
+\addtolength{\textwidth}{-61truemm} % 右の余白も30mmに
+% ---
+\end{lstlisting}
+ちなみにこれは本書の設定である．
+\subsection{ページスタイル}
+fancyhdrパッケージを用いると，ページスタイルを少し変えることができる．
+以下のように記述することで，ページスタイルを変更することができる．
+\begin{lstlisting}
+% ページスタイルの設定 ---
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{--\;\thepage\;--}
+\rfoot{}
+\end{lstlisting}
+この場合，ページの中央下部にページ番号が表示される．
+本書では，各章で右上に章番号と章名，中央下にページ番号を表示するように設定している．
+\subsection{段組}
+multicolパッケージを用いると，段組を簡単に設定することができる．
+以下のように記述することで，段組を設定することができる．
+\begin{lstlisting}
+\usepackage{multicol}
+\begin{multicols}{2}
+  ここに段組したい文章を記述する．
+\end{multicols}
+\end{lstlisting}
+この場合，2つの段組を設定している．
+他には，documentclassのオプションでtwocolumnを指定することで，2段組にすることもできる．
