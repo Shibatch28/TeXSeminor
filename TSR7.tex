@@ -1,0 +1,155 @@
+\section{TikZ}
+\subsection{TikZとは}
+TikZ(読み: ティクス，ティクツなど)とは，Beamerの作成者であるTill Tantau氏によって作成された描画パッケージである．
+\subsection{TikZの導入方法}
+TikZを使うときにLuaLaTeXの良さが現れる．LuaLaTeXでは他のパッケージと同様，以下のように宣言すれば良い．
+\begin{lstlisting}
+\usepackage{tikz}
+\end{lstlisting}
+一方，pLaTeXなどでは以下のようにパッケージの使用を宣言しなければならない．
+\begin{lstlisting}
+\usepackage[dvipdfmx]{graphicx, xcolor}
+\usepackage{tikz}
+\end{lstlisting}
+これは，pLaTeXではtexファイルからDVIファイルという形式で書き出してから，PDFに変換するという都合上，dvipdfmxというドライバを指定する必要があるからだ．したがって，
+グラフィック関係のパッケージを読み込むときにdvipdfmxドライバを指定するか，
+documentclassを書くときにdvipdfmxドライバをオプションとして指定しなければならない．
+\subsection{TikZ用のライブラリ}
+TikZには専用のライブラリがあり，それらは\texttt{usetikzlibrary}コマンドで呼び出せる．多数あるため自由度が高いので，設定例を以下に示す．
+\begin{lstlisting}
+  \usepackage{tikz, tikz-3dplot, braket}
+  \usetikzlibrary{patterns, intersections, calc, quotes, angles, arrows.meta, through, shapes.geometric}
+  \usetikzlibrary{shapes, positioning}
+\end{lstlisting}
+\subsection{グラフの描き方}
+TikZを使ってグラフを描くときは，\texttt{tikzpicture}環境を使う．
+\begin{lstlisting}
+\begin{tikzpicture}
+  \draw (0,0) -- (1,1);
+\end{tikzpicture}
+\end{lstlisting}
+このコードは，原点から(1,1)までの直線を描く．
+\subsubsection{矢印の描き方}
+矢印を描くときは，\texttt{->}または\texttt{-latex}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \draw[->] (0,0) -- (1,1);
+    \draw[-latex] (3,0) -- (4,1);
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\subsubsection{線の太さの変更}
+線の太さを変更するときは，\texttt{line width}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \draw[line width=2pt] (0,0) -- (1,1);
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\subsubsection{線の色の変更}
+線の色を変更するときは，\texttt{color}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \draw[color=red] (0,0) -- (1,1);
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\newpage
+\subsubsection{線のスタイルの変更}
+線のスタイルを変更するときは，\texttt{dashed}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \draw[dashed] (0,0) -- (1,1);
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\subsubsection{線のパターンの変更}
+線のパターンを変更するときは，\texttt{dotted}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \draw[dotted] (0,0) -- (1,1);
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\subsubsection{線の角の変更}
+線の角を変更するときは，\texttt{rounded corners}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \draw[rounded corners] (0,0) -- (1,1);
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\subsubsection{線の始点と終点の変更}
+線の始点と終点を変更するときは，\texttt{shift}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \draw[shift={(1,1)}] (0,0) -- (1,1);
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\newpage
+\subsubsection{線の透明度の変更}
+線の透明度を変更するときは，\texttt{opacity}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \draw[opacity=0.5] (0,0) -- (1,1);
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\subsubsection{点のプロット}
+点をプロットするときは，\texttt{fill}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \fill (0,0) circle [radius=1pt];
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\subsubsection{点のラベル}
+点にラベルをつけるときは，\texttt{node}を使う．
+\begin{lstlisting}
+\begin{figure}
+  \begin{tikzpicture}
+    \node at (0, 1) [left] {A};
+  \end{tikzpicture}
+\end{figure}
+\end{lstlisting}
+\newpage
+\subsubsection{まとめ}
+以上のことをまとめると，以下のようなグラフを作成できる．
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \draw[-latex] (-5,0) -- (5,0) node[right] {$x$};
+    \draw[-latex] (0,-5) -- (0,5) node[above] {$y$};
+    \draw[color=red, dashed, line width=2pt] (-5,-4) -- (4,5);
+    \draw[color=blue, dotted, line width=2pt] (-5,3) -- (3,-5);
+    \node at (0, 0) [above right] {O};
+    \node at (0, 1) [left] {A};
+    \node at (0, -2) [right] {B};
+    \node at (-1.5, -0.5) [below] {C};
+  \end{tikzpicture}
+\end{figure}
+\begin{lstlisting}
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \draw[-latex] (-5,0) -- (5,0) node[right] {$x$};
+      \draw[-latex] (0,-5) -- (0,5) node[above] {$y$};
+      \draw[color=red, dashed, line width=2pt] (-5,-4) -- (4,5);
+      \draw[color=blue, dotted, line width=2pt] (-5,3) -- (3,-5);
+      \node at (0, 0) [above right] {O};
+      \node at (0, 1) [left] {A};
+      \node at (0, -2) [right] {B};
+      \node at (-1.5, -0.5) [below] {C};
+    \end{tikzpicture}
+  \end{figure}
+\end{lstlisting}
