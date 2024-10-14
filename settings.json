@@ -93,7 +93,12 @@
     {
       "name": "lualatex",
       "command": "lualatex",
-      "args": ["-synctex=1", "-interaction=nonstopmode", "%DOC%"]
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-outpit-directory=%OUTDIR%",
+        "%DOC%"
+      ]
     },
     {
       "name": "latexindent",
