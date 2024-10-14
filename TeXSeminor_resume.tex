@@ -3,13 +3,14 @@
   \Title{論文・レポート執筆のためのLaTeX入門会 〜環境構築からBibTeXまで〜}
   \Author{大芝 峻平}
   \Language{ja-JP}
+  \Keywords{LaTeX, BibTeX, 環境構築}
   \Publisher{静岡大学附属図書館浜松分館利用学生モニター}
 \end{filecontents*}
 
 
 % プリアンブル
 \documentclass[12pt, a4paper, titlepage]{ltjsarticle}
-\usepackage[x-1a]{pdfx}
+\usepackage[a-2u]{pdfx}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[luatex]{graphicx}
 \usepackage{ascmac}
@@ -28,6 +29,7 @@
 \usepackage{fontspec}
 \usepackage{luatexja-fontspec}
 \usepackage[deluxe]{luatexja-preset}
+\usepackage{ifplatform}
 
 % TikZの設定 ---
 \usepackage{tikz, tikz-3dplot, braket}
@@ -59,20 +61,40 @@
 % ---
 
 % フォントの設定 ---
-\setmainfont[Ligatures={Rare,TeX}]{Times New Roman}
-\setsansfont{Arial}
+\ifmacosx
+  \setmainfont[Ligatures={Rare,TeX}]{Times New Roman}
+  \setsansfont{Arial}
+  \setmainjfont[
+    % Path = /System/Library/Fonts/,
+    Extension = .otf,
+    UprightFont = *-L,
+    BoldFont = *-B
+  ]{FOT-UDMinchoPr6N}
+  \setsansjfont[
+    % Path = /System/Library/Fonts/,
+    Extension = .otf,
+    UprightFont = *-M,
+    BoldFont = *-B
+  ]{FOT-UDKakugo_SmallPr6N}
+\else
+\setmainfont[
+  Path=/home/shiba/.fonts/,
+  Extension = .ttf,
+]{times}
+\setsansfont{arial}
 \setmainjfont[
   % Path = /System/Library/Fonts/,
   Extension = .otf,
   UprightFont = *-L,
   BoldFont = *-B
-]{FOT-UDMinchoPro}
+]{FOT-UDMinchoPr6N}
 \setsansjfont[
   % Path = /System/Library/Fonts/,
   Extension = .otf,
   UprightFont = *-M,
   BoldFont = *-B
-]{FOT-UDKakugo_SmallPr6}
+]{FOT-UDKakugo_SmallPr6N}
+\fi
 % ---
 
 %ここからソースコードの表示に関する設定
