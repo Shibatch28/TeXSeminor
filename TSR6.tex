@@ -31,6 +31,28 @@ geometryパッケージを用いると，以下のように記述することで
 % ---
 \end{lstlisting}
 ちなみにこれは本書の設定である．
+また，インデントなどの幅を細く変えたいとき，単位を用いる時がある．
+このとき，単位として使用できるのは以下の通りである．
+\begin{itemize}
+  \item mm - ミリメートル．1mmは1ミリメートルに相当する単位． 
+  \item cm - センチメートル．1cmは10ミリメートルに相当する単位．
+  \item in - インチ．1inは2.54cm（25.4mm）に相当する単位．
+  \item pt - ポイント．1ptは1/72インチ（約0.3527mm）に相当する単位．
+  \item em - em単位．その場で使われているフォントサイズ（ポイント数）に相当する相対単位．例えば、12ptのフォントなら1emは12pt． 
+  \item ex - ex単位．フォントのx高さに基づく相対単位で、x文字の高さを基準とする．フォントによって変動する． 
+  \item mu - mu単位．1muは1/18emに相当する非常に小さな単位で、主に数式内の余白調整に使用される． 
+  \item zh - 全角文字の高さに基づく単位．CJK（中国語，日本語，韓国語）用の文字サイズに対応． 
+  \item zw - 全角文字の幅に基づく単位．
+  \item \% - パーセンテージ．例えば，ページやカラムの幅の何\% かを指定する際に使用する．
+  \item \textbackslash linewidth - 現在の段落の幅を指定する．段落内での相対的な長さ調整に使える． 
+  \item \textbackslash textheight - 本文領域の高さを指定する．ページ内の文章領域のサイズ調整に使われる． 
+  \item \textbackslash paperheight - 紙全体の高さを指定する．文書全体のレイアウト設計に使用する． 
+  \item \textbackslash paperwidth - 紙全体の幅を指定する．文書全体のレイアウト設計に使用する． 
+  \item \textbackslash textwidth - 本文領域の幅を指定する．文章の横幅を設定するための重要な単位． 
+  \item \textbackslash columnwidth - カラムの幅を指定する．2カラムや複数カラムのレイアウトで使われる． 
+  \item \textbackslash columnsep - カラム間の間隔を指定する．カラム間の余白の調整に使用される． 
+  \item \textbackslash columnseprule - カラム間のルールの幅を指定する．カラム間の罫線の太さを調整できる．
+\end{itemize}
 \subsection{ページスタイル}
 fancyhdrパッケージを用いると，ページスタイルを少し変えることができる．
 以下のように記述することで，ページスタイルを変更することができる．
