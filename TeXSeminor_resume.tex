@@ -28,6 +28,7 @@
 \usepackage{fontspec}
 \usepackage{luatexja-fontspec}
 \usepackage[deluxe]{luatexja-preset}
+\usepackage{ifplatform}
 
 % TikZの設定 ---
 \usepackage{tikz, tikz-3dplot, braket}
@@ -59,20 +60,40 @@
 % ---
 
 % フォントの設定 ---
-\setmainfont[Ligatures={Rare,TeX}]{Times New Roman}
-\setsansfont{Arial}
+\ifmacosx
+  \setmainfont[Ligatures={Rare,TeX}]{Times New Roman}
+  \setsansfont{Arial}
+  \setmainjfont[
+    % Path = /System/Library/Fonts/,
+    Extension = .otf,
+    UprightFont = *-L,
+    BoldFont = *-B
+  ]{FOT-UDMinchoPr6N}
+  \setsansjfont[
+    % Path = /System/Library/Fonts/,
+    Extension = .otf,
+    UprightFont = *-M,
+    BoldFont = *-B
+  ]{FOT-UDKakugo_SmallPr6N}
+\else
+\setmainfont[
+  Path=/home/shiba/.fonts/,
+  Extension = .ttf,
+]{times}
+\setsansfont{arial}
 \setmainjfont[
   % Path = /System/Library/Fonts/,
   Extension = .otf,
   UprightFont = *-L,
   BoldFont = *-B
-]{FOT-UDMinchoPro}
+]{FOT-UDMinchoPr6N}
 \setsansjfont[
   % Path = /System/Library/Fonts/,
   Extension = .otf,
   UprightFont = *-M,
   BoldFont = *-B
-]{FOT-UDKakugo_SmallPr6}
+]{FOT-UDKakugo_SmallPr6N}
+\fi
 % ---
 
 %ここからソースコードの表示に関する設定
