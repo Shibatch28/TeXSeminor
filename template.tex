@@ -1,0 +1,49 @@
+% ドキュメントクラス =================
+\documentclass[12pt, a4paper]{ltjsarticle}
+% ====================================
+
+% 読み込むパッケージ =================
+\usepackage[dvipsnames]{xcolor}         % 色を沢山使えるようにするパッケージ
+\usepackage[luatex]{graphicx}           % 画像ファイルを取り込むためのパッケージ
+\usepackage{ascmac}                     % 枠やスクリーン環境などを提供するパッケージ
+\usepackage{CJKutf8}                    % CJKテキストを使えるようにするパッケージ
+\usepackage{luatex85}                   % 古いパッケージに互換性をもたせるパッケージ
+\usepackage{multicol}                   % 複数列のレイアウトを実現するパッケージ
+\usepackage{physics, amssymb, amsmath}  % 数式に用いる記号や機能を提供するパッケージ
+\usepackage{enumitem}                   % 箇条書きのレイアウトを調整するパッケージ
+\usepackage{here}                       % 画像や表を強制的に配置するパッケージ
+\usepackage{listings, jvlisting}        % ソースコードを載せる用のパッケージ
+\usepackage{tikz, tikz-3dplot, braket}  % TikZ用のパッケージ
+\usepackage{subcaption}                 % サブキャプションをつけられるパッケージ
+% =====================================
+
+% TikZの設定===========================
+% 図形描画のための基本ライブラリ
+\usetikzlibrary{shapes, shapes.geometric, positioning, through}
+% パターン、計算、交差点など、高度な描画機能
+\usetikzlibrary{patterns, intersections, calc}
+% 図の注釈、角度、矢印などの注記に関連する機能
+\usetikzlibrary{quotes, angles, arrows.meta}
+% =====================================
+
+% 余白の設定 ==========================
+\setlength{\textheight}{\paperheight}
+\setlength{\topmargin}{4.6truemm}  % 上の余白を30mm (=1inch[25.4mm] - 4.6mm)に
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\textheight}{-60truemm} % 下の余白も30mmに (TOP+20mm)
+
+\setlength{\textwidth}{\paperwidth}
+\setlength{\oddsidemargin}{4.6truemm}  % 左の余白を30mm (=1inch[25.4mm] + 4.6mm)に
+\setlength{\evensidemargin}{\oddsidemargin}
+\addtolength{\textwidth}{-61truemm} % 右の余白も30mmに
+% =====================================
+
+% 図番号などの設定 ====================
+\renewcommand{\lstlistingname}{Source Code} % "Listing" を "Source Code" に変更
+% 図番号，表番号，式番号に章番号を追加
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\numberwithin{equation}{section}
+% =====================================
+
