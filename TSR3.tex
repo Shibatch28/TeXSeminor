@@ -8,6 +8,34 @@
 \textbackslash usepackage\{xcolor\}
 }\\
 とプリアンブルに書くことで読み込むことができる．
+\subsection{タイトルの表示}
+\subsubsection{タイトル，著者，執筆日の設定}
+\LaTeX で文書を作成する際には，タイトル，著者，執筆日を設定する必要がある．
+タイトルを設定するには，\texttt{title}コマンドを使用する．著者を設定するには，\texttt{author}コマンドを使用する．執筆日を設定するには，\texttt{date}コマンドを使用する．
+\begin{lstlisting}
+  \title{タイトル}
+  \author{著者}
+  \date{執筆日}
+\end{lstlisting}
+\subsubsection{タイトルの表示}
+タイトル，著者，執筆日を設定した後，\texttt{document}環境内で\texttt{maketitle}コマンドを使用することで，それらを表示することができる．
+\begin{lstlisting}
+\begin{document}
+  \maketitle
+\end{document}
+\end{lstlisting}
+\newpage
+\subsubsection{document環境とは}
+\texttt{document}環境は，\texttt{begin}コマンドと\texttt{end}コマンドで囲まれた部分を指す．\texttt{document}環境内に本文を記述する．
+ここに記述された内容が実際に文書として表示される．逆に，\texttt{document}環境外に記述された内容は，文書として表示されずにエラーが起きる．
+\subsection{目次}
+\subsubsection{目次の表示}
+目次を表示するには，\texttt{tableofcontents}コマンドを使用する．\texttt{clearpage}コマンドを合わせて
+使用することで，目次を新しいページに表示することができる．
+\begin{lstlisting}
+  \tableofcontents
+  \clearpage
+\end{lstlisting}
 \subsection{章立て}
 \subsubsection{章立ての方法}
 レポートにおいて，章立ては必須である．章立てをする際には以下のタグを用いる．
@@ -19,7 +47,8 @@
 \end{itemize}
 \texttt{section}は行った実験ごとに章を分ける場合に使用し，\texttt{subsection}はその実験の各項目(目的，実験方法など)
 を分けるのに使用する場合が多い．\texttt{subsubsection}に関しては更に細かく章を分けたいときに使用する．\texttt{paragraph}は，
-更に細かい章分けに用いる．\\
+更に細かい章分けに用いる．
+\newpage
 例えば，工学部2年後期から始まる実験では，数日に分けて実験を行う場合が多いので，以下のように章立てをするのが良いだろう．
 \begin{itembox}[c]{章立ての例}
   \ttfamily
