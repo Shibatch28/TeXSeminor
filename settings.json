@@ -96,7 +96,7 @@
       "args": [
         "-synctex=1",
         "-interaction=nonstopmode",
-        "-outpit-directory=%OUTDIR%",
+        "-output-directory=%OUTDIR%",
         "%DOC%"
       ]
     },
