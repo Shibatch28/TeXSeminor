@@ -106,17 +106,9 @@
       "args": ["--local", "--overwrite", "%DOC%"]
     },
     {
-      "name": "lualatex + bibtex",
-      "command": "lualatex + bibtex",
-      "args": [
-        "--cmdx",
-        "-file-line-error",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-halt-on-error",
-        "-outpit-directory=%OUTDIR%",
-        "%DOC%"
-      ]
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["-kanji=utf8"]
     }
   ],
   "latex-workshop.formatting.latex": "latexindent",
