@@ -153,3 +153,87 @@ TikZを使ってグラフを描くときは，\texttt{tikzpicture}環境を使�
     \end{tikzpicture}
   \end{figure}
 \end{lstlisting}
+\newpage
+\subsection{TikZでシステム構成図やフローチャートを作る}
+前節では，TikZによるグラフの作成について記載したが，
+本節ではTikZによるシステム構成図の描画について解説する．
+\subsubsection{基本構造}
+基本的にTikZでシステム構成図やフローチャートを作成する場合，ほぼ\texttt{node}コマンドしか
+使用しない．また，フローチャートを記述する場合は図形の使い回しが発生するので，
+ある程度の設定を\texttt{tikzset}コマンドでまとめておくと良い．
+以下にフローチャートで主に使う図形の設定をまとめておく．
+\begin{lstlisting}
+\begin{tikzpicture}
+  \tikzset{Terminal/.style={rounded rectangle,  draw,  text centered, text width=3cm, minimum height=1.5cm}};
+  \tikzset{Process/.style={rectangle,  draw,  text centered, text width=3cm, minimum height=1.5cm}};
+  \tikzset{Decision/.style={diamond,  draw,  text centered, aspect=3,text width=5cm, minimum height=1.5cm}};
+\end{tikzpicture}
+\end{lstlisting}
+この設定では以下のような形状のノードが作成できる．
+\begin{figure}[H]
+  \begin{tikzpicture}
+    \tikzset{Terminal/.style={rounded rectangle,  draw,  text centered, text width=3cm, minimum height=1.5cm}};
+    \tikzset{Process/.style={rectangle,  draw,  text centered, text width=3cm, minimum height=1.5cm}};
+    \tikzset{Decision/.style={diamond,  draw,  text centered, aspect=3,text width=4cm, minimum height=1.5cm}};
+    \node[Terminal](a)at (0,0){開始/終了};
+    \node[Process](b)at (4,0){プロセス};
+    \node[Decision](c)at (10,0){条件分岐};
+  \end{tikzpicture}
+\end{figure}
+\subsubsection{ノードの書き方}
+まずは前項から出てきた「ノード」について軽く解説する．
+「結び目」や「集合点」を意味し，例えばフローチャートでは
+一連の行動の中で「結び目」を作ってそこに行動を記録する，
+といった感じである．
+ノード(点)を線で繋いでフローチャートを作っていく，というイメージを持つと良い．
+
+さて，実際にどのような記法になるかであるが，例を見た方がわかりやすいだろう．
+\newpage
+\begin{lstlisting}
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      % フローチャートで用いる図形の定義 ===
+      \tikzset{Terminal/.style={rounded rectangle,  draw,  text centered, text width=3cm, minimum height=1.5cm}};
+      \tikzset{Process/.style={rectangle,  draw,  text centered, text width=3cm, minimum height=1.5cm}};
+      \tikzset{Decision/.style={diamond,  draw,  text centered, aspect=3,text width=4cm, minimum height=1.5cm}};
+      % ノード ===
+      \node[Terminal](start){開始};
+      \node[Process, below = 1cm of start](process1){プロセス1};
+      \node[Decision, below = 1cm of process1](decision1){条件分岐};
+      \node[Process, below = 1cm of decision1](process2){プロセス2};
+      \node[Terminal, below = 1cm of process2](end){終了};
+      % 線 ===
+      \draw[-latex](start)--(process1);
+      \draw[-latex](process1)--(decision1);
+      \draw[-latex](decision1)--node[right]{YES}(process2);
+      \draw[-latex](decision1.east) |- node[above]{NO}(process1.east);
+      \draw[-latex](process2)--(end);
+    \end{tikzpicture}
+    \caption{フローチャート}
+  \end{figure}
+\end{lstlisting}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    % フローチャートで用いる図形の定義 ===
+    \tikzset{Terminal/.style={rounded rectangle,  draw,  text centered, text width=3cm, minimum height=1.5cm}};
+    \tikzset{Process/.style={rectangle,  draw,  text centered, text width=3cm, minimum height=1.5cm}};
+    \tikzset{Decision/.style={diamond,  draw,  text centered, aspect=3,text width=4cm, minimum height=1.5cm}};
+    % ノード ===
+    \node[Terminal](start){開始};
+    \node[Process, below = 1cm of start](process1){プロセス1};
+    \node[Decision, below = 1cm of process1](decision1){条件分岐};
+    \node[Process, below = 1cm of decision1](process2){プロセス2};
+    \node[Terminal, below = 1cm of process2](end){終了};
+    % 線 ===
+    \draw[-latex](start)--(process1);
+    \draw[-latex](process1)--(decision1);
+    \draw[-latex](decision1)--node[right]{YES}(process2);
+    \draw[-latex](decision1.east) |- node[above]{NO}(process1.east);
+    \draw[-latex](process2)--(end);
+  \end{tikzpicture}
+  \caption{フローチャート}
+\end{figure}
+TikZのオプションは多彩なので，各自で色々調べつつ上記の例を
+少しずつ変えてオリジナルのものを作ることをおすすめする．
