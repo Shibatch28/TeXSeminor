@@ -1,0 +1,171 @@
+% 書き出したPDFファイルに埋め込む情報を記述するためのファイル
+\begin{filecontents*}{\jobname.xmpdata}
+  \Title{論文・レポート執筆のためのLaTeX入門会 〜環境構築からBibTeXまで〜}
+  \Author{大芝 峻平}
+  \Language{ja-JP}
+  \Keywords{LaTeX, BibTeX, 環境構築}
+  \Publisher{静岡大学附属図書館浜松分館利用学生モニター}
+\end{filecontents*}
+
+
+% プリアンブル
+\documentclass[12pt, a4paper, titlepage]{ltjsarticle}
+\usepackage[x-1a]{pdfx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[luatex]{graphicx}
+\usepackage{ascmac}
+\usepackage{CJKutf8}
+\usepackage{luatex85}
+\usepackage{multicol}
+\usepackage{physics, amssymb, amsmath}  % 数式用
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{here}
+\usepackage{listings, jvlisting}
+\usepackage{tikz, tikz-3dplot, braket}
+\usepackage{titling}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{luatexja-fontspec}
+\usepackage[deluxe]{luatexja-preset}
+\usepackage{ifplatform}
+
+% TikZの設定 ---
+\usepackage{tikz, tikz-3dplot, braket}
+\usetikzlibrary{patterns, intersections, calc, quotes, angles, arrows.meta, through, shapes.geometric}
+\usetikzlibrary{shapes, positioning}
+% ---
+
+% 余白の設定 ---
+\setlength{\textheight}{\paperheight}
+\setlength{\topmargin}{4.6truemm}  % 上の余白を30mm (=1inch[25.4mm] - 4.6mm)に
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\textheight}{-60truemm} % 下の余白も30mmに (TOP+20mm)
+
+\setlength{\textwidth}{\paperwidth}
+\setlength{\oddsidemargin}{4.6truemm}  % 左の余白を30mm (=1inch[25.4mm] + 4.6mm)に
+\setlength{\evensidemargin}{\oddsidemargin}
+\addtolength{\textwidth}{-61truemm} % 右の余白も30mmに
+% ---
+
+% ページスタイルの設定 ---
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\lfoot{}
+\cfoot{--\;\thepage\;--}
+\rfoot{}
+\allowdisplaybreaks % 数式モードのページ跨ぎを許可
+% ---
+
+% フォントの設定 ---
+% \ifmacosx
+  \setmainfont[Ligatures={Rare,TeX}]{Times New Roman}
+  \setsansfont{Arial}
+  \setmainjfont[
+    % Path = /System/Library/Fonts/,
+    Extension = .otf,
+    UprightFont = *-L,
+    BoldFont = *-B
+  ]{FOT-UDMinchoPr6N}
+  \setsansjfont[
+    % Path = /System/Library/Fonts/,
+    Extension = .otf,
+    UprightFont = *-M,
+    BoldFont = *-B
+  ]{FOT-UDKakugo_SmallPr6N}
+% \else
+% \setmainfont[
+%   Path=/home/shiba/.fonts/,
+%   Extension = .ttf,
+% ]{times}
+% \setsansfont{arial}
+% \setmainjfont[
+%   % Path = /System/Library/Fonts/,
+%   Extension = .otf,
+%   UprightFont = *-L,
+%   BoldFont = *-B
+% ]{FOT-UDMinchoPr6N}
+% \setsansjfont[
+%   % Path = /System/Library/Fonts/,
+%   Extension = .otf,
+%   UprightFont = *-M,
+%   BoldFont = *-B
+% ]{FOT-UDKakugo_SmallPr6N}
+% \fi
+% ---
+
+%ここからソースコードの表示に関する設定
+\lstdefinelanguage{customBib}{
+  morekeywords={@article,@book,@misc,@inproceedings,@techreport,@phdthesis,@mastersthesis}, % BibTeXのエントリタイプ
+  sensitive=false,        % 大文字・小文字の区別をしない
+  morecomment=[l][\color{gray}]{@}, % コメント（BibTeXのエントリ）をグレーに
+  morestring=[b]",        % ダブルクオートで囲まれた文字列
+}
+
+\lstset{
+  language=customBib,        % BibTeX用の言語設定を適用
+  basicstyle=\ttfamily,   % 等幅フォント
+  keywordstyle=\color{blue},    % キーワードの色
+  stringstyle=\color{red},      % 文字列の色
+  commentstyle=\color{gray},    % コメントの色
+  breaklines=true,        % 長い行を折り返す
+  numbers=left,           % 行番号を左に表示
+  numberstyle=\tiny\color{gray}, % 行番号のスタイル
+  stepnumber=1,           % 行番号の間隔
+  tabsize=2,              % タブのサイズ
+  showstringspaces=false, % 文字列中のスペースを表示しない
+}
+
+\lstset{
+  language={TeX},
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\small},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0\zw,
+  xleftmargin=0\zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1\zw,
+  lineskip=-0.5ex
+}
+\renewcommand{\lstlistingname}{Source Code}
+%ここまでソースコードの表示に関する設定
+
+\pagestyle{fancy}
+\setlength{\headheight}{20pt}
+\allowdisplaybreaks % 数式モードのページ跨ぎ
+
+\titleformat{\section}[display]
+  {\normalsize\LARGE\bfseries}{第\thesection 章}{0pt}{\HUGE}[\vspace*{-1\zh}\hrulefill]
+\titlespacing*{\section}{0pt}{0.5ex}{1ex}
+
+\title{論文・レポート執筆のための\LaTeX 入門会\\〜環境構築からBibTeXまで〜}
+\date{\today}
+\author{大芝 峻平}
+
+\begin{document}
+\maketitle
+% 目次の出力
+\tableofcontents
+\clearpage
+\include{TSR1.tex}
+\include{TSR2.tex}
+\include{TSR3.tex}
+\include{TSR4.tex}
+\include{TSR5.tex}
+\include{TSR6.tex}
+\include{TSR7.tex}
+\bibliography{resume}
+\bibliographystyle{junsrt}
+\nocite{*}
+\end{document}
